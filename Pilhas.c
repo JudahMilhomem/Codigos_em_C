@@ -23,23 +23,41 @@ void inicializaPilha(Topo *inicio){ // Inicializa uma pilha vazia
   inicio->topo = NULL;
 }
 
-void insereNodo(Topo *inicio){ // Insere um nodo na PILHA (início*)
+void insereNaPilha(Topo *inicio){ // Insere um nodo na PILHA (início/topo)*
   Pilha *aux;
   aux = malloc(sizeof(Pilha));
-  aux->elemento.item = 1;
+  aux->elemento.item = 21;
 
   // Links:
   aux->proximo = inicio->topo;
   inicio->topo = aux;
+
+  // Teste
+  // int consulta;
+  // consulta = inicio->topo->elemento.item;
+  // printf("%d", consulta);
+
 } // Obs.: só pode ser feito após inicializar uma lista
+
+void removeDaPilha(Topo *inicio){ // remove um nodo da pilha (considerando pilha não vazia)*
+  Pilha *aux;
+  
+  // Armazena o valor do item removido pra confirmar o sucesso da operação
+  int removido;
+  removido = inicio->topo->elemento.item;
+  
+  aux = inicio->topo;
+  inicio->topo = inicio->topo->proximo;
+
+  free(aux);
+  printf("O item removido foi: %d\n", removido);
+}
 
 int main(){
   Topo *inicio;
   inicializaPilha(&inicio);
-  insereNodo(&inicio);
-  int consulta;
-  consulta = inicio->topo->elemento.item;
-  printf(consulta);
+  insereNaPilha(&inicio);
+  removeDaPilha(&inicio);
 
   return 0;
 }
