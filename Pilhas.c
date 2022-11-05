@@ -53,11 +53,23 @@ void removeDaPilha(Topo *inicio){ // remove um nodo da pilha (considerando pilha
   printf("O item removido foi: %d\n", removido);
 }
 
+void verificaPilha(Topo *inicio){ // Verifica se a pilha está vazia ou não
+  if (inicio->topo == NULL){
+    printf("A pilha esta vazia!\n");
+    return;
+  } else{
+    printf("A pilha nao esta vazia...\n");
+    return;
+  }
+}
+
 int main(){
   Topo *inicio;
   inicializaPilha(&inicio);
   insereNaPilha(&inicio);
   removeDaPilha(&inicio);
+
+  verificaPilha(&inicio);
 
   return 0;
 }
