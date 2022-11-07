@@ -19,11 +19,11 @@ typedef struct{
   Pilha *topo;
 } Topo;
 
-void inicializaPilha(Topo *inicio){ // Inicializa uma pilha vazia
+void inicializaPilha(Topo *inicio){ // Inicializa uma pilha vazia 
   inicio->topo = NULL;
 }
 
-void insereNaPilha(Topo *inicio){ // Insere um nodo na PILHA (início/topo)*
+void insereNaPilha(Topo *inicio){ // Insere um nodo na PILHA (início/topo)* 
   Pilha *aux;
   aux = malloc(sizeof(Pilha));
   aux->elemento.item = 21;
@@ -39,7 +39,7 @@ void insereNaPilha(Topo *inicio){ // Insere um nodo na PILHA (início/topo)*
 
 } // Obs.: só pode ser feito após inicializar uma lista
 
-void removeDaPilha(Topo *inicio){ // remove um nodo da pilha (considerando pilha não vazia)*
+void removeDaPilha(Topo *inicio){ // remove um nodo da pilha (considerando pilha não vazia)* 
   Pilha *aux;
   
   // Armazena o valor do item removido pra confirmar o sucesso da operação
@@ -53,7 +53,7 @@ void removeDaPilha(Topo *inicio){ // remove um nodo da pilha (considerando pilha
   printf("O item removido foi: %d\n", removido);
 }
 
-void verificaPilha(Topo *inicio){ // Verifica se a pilha está vazia ou não
+void verificaPilha(Topo *inicio){ // Verifica se a pilha está vazia ou não 
   if (inicio->topo == NULL){
     printf("A pilha esta vazia!\n");
     return;
@@ -63,12 +63,32 @@ void verificaPilha(Topo *inicio){ // Verifica se a pilha está vazia ou não
   }
 }
 
+void liberaPilha(Topo *inicio){ // Libera toda a memória alocada para a pilha 
+  Pilha *aux;
+
+  // for(aux = inicio->topo; aux-> proximo != NULL; aux = aux->proximo){}
+    while(inicio->topo != NULL){
+    aux = inicio->topo;
+    inicio->topo = inicio->topo->proximo;
+
+    free(aux);
+    printf("Um nodo foi liberado\n");
+  }
+  printf("Limpeza de memoria completa!\n");
+}
+
 int main(){
   Topo *inicio;
   inicializaPilha(&inicio);
   insereNaPilha(&inicio);
   removeDaPilha(&inicio);
+  verificaPilha(&inicio);
 
+  // Teste da função liberaPilha:
+  insereNaPilha(&inicio);
+  insereNaPilha(&inicio);
+  insereNaPilha(&inicio);
+  liberaPilha(&inicio);
   verificaPilha(&inicio);
 
   return 0;
