@@ -27,16 +27,27 @@ void insereFila(Fila *fila, Item item){
     }
 }
 
-void removeFila(){
+void removeFila(Fila *fila, Item *item){
+    ElemFila *aux;
 
+    *item = fila->primeiro->item;
+
+    aux = fila->primeiro;
+    if(fila->primeiro == fila->ultimo){
+        fila->primeiro == NULL;
+        fila->ultimo == NULL;
+    } else{
+        fila->primeiro = fila->primeiro->proximo;
+    }
 }
 
-void inicializaFila(){
-
+void inicializaFila(Fila *fila){
+    fila->primeiro = NULL;
+    fila->ultimo = NULL;
 }
 
-int filaVazia(){
-
+int filaVazia(Fila *fila){
+    return (fila->primeiro == NULL);
 }
 
 void liberaFila(){
